@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <link rel="stylesheet" href="css/style.css">
+    <script src="js/jquery-3.3.1.js"></script>
+    <script src="js/bootstrap.bundle.js"></script>
+    <script src="js/vue.js"></script>
+    <title>ToDoList</title>
+</head>
+
+<body>
+    <div id="application">
+        <div class="container">
+            <div id="application-top" class="row">
+                <div id="logo-and-heading">
+                    <img id="logo" src="img/logo.png">
+                    <h1>ToDoList</h1>
+                </div>
+                <div class="card" id="language-selector">
+                    <div class="card-body ">
+                        <div class="dropdown">
+                            <button v-html="languageButtons[0].content" class="btn btn-light dropdown-toggle" type="button" id="dropdownLanguageMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            </button>
+                            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                <button v-for="(langBtn, index) in languageButtons" v-html="langBtn.content" v-bind:value="index" v-if="index != 0" v-on:click="changeLanguage" class="btn btn-light" type="button">
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div v-if="!loggedIn" class="card" id="log-in-card">
+                <div class="card-body">
+                    <form>
+                        <div class="form-group">
+                            <input v-model="userName" v-bind:placeholder="guiElements.userName" type="text" class="form-control col-8 mx-auto" id="name">
+                            <input v-model="userPassword" v-bind:placeholder="guiElements.password" type="password" class="form-control margin-top-bottom col-8 mx-auto" id="password">
+                            <div v-if="warning" class="text-center">
+                                <label  class="warning">{{ guiElements.warning }}</label>
+                            </div>
+                            <button v-on:click="logIn" type="button" class="btn btn-primary col-4">{{ guiElements.logIn }}</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div v-if="loggedIn" class="card">
+                <div class="card-body form-group row">
+                    <form class="form-inline col-12">
+                        <div class="col-md-2">{{ guiElements.newTodo }}</div>
+                        <div class="col-md-8">
+                            <input v-model="newTodo" id="new-todo" class="form-control w-100" type="text" maxlength="30">
+                        </div>
+                        <div class="col-md-2">
+                            <button v-on:click="addTodo" type="button" class="btn btn-success col-4 col-sm-2 col-md-12">{{ guiElements.addButton }}</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div v-if="loggedIn" class="card">
+                <div class="card-body pb-0">
+                    <span class="padding-left">{{ guiElements.yourTodos }}</span>
+                </div>
+                <div v-for="todo in todosList" class="card-body form-group row pb-0">
+                    <p class="date-and-time">{{ todo.datetime }}</p>
+                    <form class="form-inline col-12">
+                        <div class="col-md-8">
+                            <input v-model="todo.text" id="" class="form-control w-100" type="text" maxlength="30" readonly>
+                        </div>
+                        <div class="col-6 col-md-2">
+                            <button v-on:click="editTodo" type="button" class="btn btn-info col-8 col-sm-4 col-md-12">{{ guiElements.editButton }}</button>
+                            <button v-on:click="saveTodo" v-bind:value="todo.id" type="button" class="btn btn-info col-8 col-sm-4 col-md-12 d-none">{{ guiElements.saveButton }}</button>
+                        </div>
+                        <div class="col-6 col-md-2">
+                            <button v-on:click="deleteTodo" v-bind:value="todo.id" type="button" class="btn btn-danger col-8 col-sm-4 col-md-12">{{ guiElements.deleteButton }}</button>
+                        </div>
+                    </form>
+                </div>
+                <div class="card-body row pb-0">
+                    <nav aria-label="List navigation" class="mx-auto">
+                        <ul class="pagination">
+                            <li v-on:click="loadTodos(paginationNumber-1)" v-bind:class="{ disabled: (paginationNumber == 1) }" class="page-item">
+                                <a class="page-link" href="#" tabindex="-1">{{ guiElements.previousButton }}</a>
+                            </li>
+                            <li class="page-item active">
+                                <span class="page-link">{{ paginationNumber }}</span>
+                            </li>
+                            <li v-on:click="loadTodos(paginationNumber+1)" v-bind:class="{ disabled: (paginationNext == false) }" class="page-item">
+                                <a class="page-link" href="#">{{ guiElements.nextButton }}</a>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="js/script.js"></script>
+</body>
+
+</html>

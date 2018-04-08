@@ -1,0 +1,165 @@
+body, html {
+    height: 100%;
+    margin: 0;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-family: tahoma, verdana, ubuntu;
+}
+
+h1 {
+    letter-spacing: 1rem;
+}
+
+label {
+    white-space: nowrap;
+}
+
+div.form-group {
+    margin-bottom: 0;
+}
+
+p.date-and-time {
+    padding-left: 2rem;
+    color: #5b5b5b;
+}
+
+div.log-in-card {
+    width: 400px;
+    margin: 0 auto;
+}
+
+input.margin-top-bottom {
+    margin: 1rem 0;
+}
+
+div.card {
+    margin: 1rem 0;
+    background-color: #f2f1e8;
+}
+
+div.dropdown > button, div.dropdown-menu > button {
+    color: #5b5b5b;
+}
+
+div.dropdown > button {
+    border: 1px solid #dbdbdb !important;
+}
+
+div.dropdown-menu {
+    min-width: 0;
+    padding: 0;
+}
+
+button.btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+ul.pagination {
+    margin-top: 1rem;
+}
+
+span.padding-left {
+    padding-left: 1rem;
+}
+
+span.page-link {
+    cursor: default !important;
+}
+
+div.form-inline {
+    justify-content: space-around;
+}
+
+div.modal-footer {
+    border-top: 0;
+    padding-top: 0;
+}
+
+label.warning {
+    color: red;
+    margin-bottom: 1rem;
+}
+
+div#application {
+    width: 680px;
+}
+
+div#application-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem;
+    margin-top: 1rem;
+}
+
+div#logo-and-heading {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+img#logo {
+    width: 100px;
+    height: 100px;
+    margin-right: 2rem;
+}
+
+@media only screen and (max-width: 767px) {
+
+    body {
+        display: block;
+    }
+
+    input[type=text] {
+        margin-top: 1rem;
+        margin-bottom: 1rem;
+    }
+
+    div.container {
+        max-width: 100%;
+    }
+
+    p.date-and-time {
+        padding-left: 0;
+        margin-bottom: 0;
+        width: 100%;
+        text-align: center;
+    }
+
+    div#application {
+        width: auto;
+    }
+
+    div#application-top {
+        flex-direction: column;
+        padding-bottom: 0;
+    }
+
+    div#language-selector {
+        margin-bottom: 0;
+        align-self: flex-end;
+    }
+
+}
+
+@media only screen and (max-width: 575px) {
+
+    h1 {
+        font-size: 1.5rem;
+        letter-spacing: .5rem;
+    }
+
+    img#logo {
+        width: 60px;
+        height: 60px;
+    }
+
+}
